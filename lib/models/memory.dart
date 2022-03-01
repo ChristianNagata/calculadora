@@ -1,5 +1,4 @@
 class Memory {
-
   static const operations = ['%', '/', 'x', '-', '+', '='];
 
   String _value = '0';
@@ -16,21 +15,19 @@ class Memory {
     }
     if (command == 'AC') {
       _allClear();
-    }
-    else if (operations.contains(command)) {
+    } else if (operations.contains(command)) {
       _setOperation(command);
-    }
-    else {
+    } else {
       _addDigit(command);
     }
     _lastCommand = command;
   }
 
   _isReplacingOperation(String command) {
-    return operations.contains(_lastCommand)
-        && operations.contains(command)
-        && _lastCommand != '='
-        && command != '=';
+    return operations.contains(_lastCommand) &&
+        operations.contains(command) &&
+        _lastCommand != '=' &&
+        command != '=';
   }
 
   _setOperation(String newOperation) {
@@ -41,8 +38,7 @@ class Memory {
         _bufferIndex = 1;
         _wipeValue = true;
       }
-    }
-    else {
+    } else {
       _buffer[0] = _calculate();
       _buffer[1] = 0.0;
       _value = _buffer[0].toString();
@@ -50,7 +46,6 @@ class Memory {
 
       _operation = isEqualSign ? '' : newOperation;
       _bufferIndex = isEqualSign ? 0 : 1;
-
     }
     _wipeValue = !isEqualSign;
   }
@@ -70,7 +65,6 @@ class Memory {
     _wipeValue = false;
 
     _buffer[_bufferIndex] = double.tryParse(_value) ?? 0;
-
   }
 
   _allClear() {
@@ -78,17 +72,22 @@ class Memory {
     _buffer.setAll((0), [0.0, 0.0]);
     _operation = '';
     _wipeValue = false;
-
   }
 
   _calculate() {
-    switch(_operation) {
-      case '%': return _buffer[0] % _buffer[1];
-      case '/': return _buffer[0] / _buffer[1];
-      case 'x': return _buffer[0] * _buffer[1];
-      case '-': return _buffer[0] - _buffer[1];
-      case '+': return _buffer[0] + _buffer[1];
-      default: return _buffer[0];
+    switch (_operation) {
+      case '%':
+        return _buffer[0] % _buffer[1];
+      case '/':
+        return _buffer[0] / _buffer[1];
+      case 'x':
+        return _buffer[0] * _buffer[1];
+      case '-':
+        return _buffer[0] - _buffer[1];
+      case '+':
+        return _buffer[0] + _buffer[1];
+      default:
+        return _buffer[0];
     }
   }
 

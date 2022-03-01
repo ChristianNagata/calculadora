@@ -3,19 +3,19 @@ import 'package:calculator/components/button_row.dart';
 import 'package:flutter/material.dart';
 
 class Keyboard extends StatelessWidget {
-
   final void Function(String) cb;
-  Keyboard(this.cb);
+
+  const Keyboard(this.cb, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 500,
       child: Column(
         children: [
           ButtonRow([
-            Button.big(text: 'AC',color: Button.DARK, cb: cb),
-            Button(text: '%',color: Button.DARK, cb: cb),
+            Button.big(text: 'AC', color: Button.DARK, cb: cb),
+            Button(text: '%', color: Button.DARK, cb: cb),
             Button.operation(text: '/', cb: cb),
           ]),
           const SizedBox(height: 1),

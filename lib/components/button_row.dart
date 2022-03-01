@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ButtonRow extends StatelessWidget {
   final List<Button> buttons;
 
-  ButtonRow(this.buttons);
+  const ButtonRow(this.buttons, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,9 @@ class ButtonRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: buttons.fold([], (list, b) {
-          list.isEmpty ? list.add(b) : list.addAll([const SizedBox(width: 1), b]);
+          list.isEmpty
+              ? list.add(b)
+              : list.addAll([const SizedBox(width: 1), b]);
           return list;
         }),
       ),
